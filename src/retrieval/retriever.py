@@ -223,7 +223,7 @@ class HybridRetriever:
         if entities:
             # Expand 2-hop subgraph around each spotted entity
             for name in entities[:3]:  # cap at 3 anchors to control context size
-                subgraph = kuzu_store.entity_subgraph(self._conn, name, hops=2)
+                subgraph = kuzu_store.entity_subgraph(self._conn, name)
                 results.extend(subgraph)
         else:
             # No entity anchor — fallback: return flagged financial edges

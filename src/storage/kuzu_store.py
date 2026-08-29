@@ -18,6 +18,7 @@ Rel tables   : RELATION        (document-extracted typed edges)
 """
 
 import json
+import re
 from pathlib import Path
 from typing import Any, Optional
 
@@ -64,6 +65,38 @@ _SCHEMA = [
         subject       STRING
     )""",
 ]
+
+
+_BLOCKED_TYPES: frozenset[str] = frozenset({
+    "date", "phone_number", "company_registration_number",
+    "legislation", "source", "operation",
+})
+
+_NOISE_PATTERNS: list[re.Pattern] = [
+    re.compile(r"^\d{4}$"),                            # bare years: 2021
+    re.compile(r"^\d{4}-\d{2}-\d{2}"),                 # ISO dates: 2024-02-20
+    re.compile(r"^\d{1,3}(?:\.\d{1,3}){3}$"),          # IP addresses
+    re.compile(r"^TXN-", re.I),                         # transaction IDs
+    re.compile(r"^[\w-]+\.[\w]{2,}$"),                  # bare domain names: freight-anon.com
+    re.compile(r"^[A-Z]{2,4}-[\d.]+$"),                # registration codes: CHE-123.456
+    re.compile(r"^[A-Z]{2,4}-\d{4}"),                  # reference codes: ROT-2024-0312
+    re.compile(r".+\s\d+\.\d+$"),                       # software versions: LibreOffice 7.4
+    re.compile(r"^\+?[\d\s\-\(\)]{8,}$"),              # phone numbers: +447700900112
+    re.compile(r"^\d+\s+\w.+,"),                        # street addresses: 12 Canary Wharf, London
+    re.compile(r"@"),                                   # raw email addresses
+    re.compile(r"^[A-Z]{3}\s+[\d,]+"),                 # monetary amounts: EUR 22,000
+]
+
+
+def _is_noise_entity(name: str, entity_type: str) -> bool:
+    if entity_type.lower() in _BLOCKED_TYPES:
+        return True
+    if entity_type.lower() == "location" and len(name) <= 3:
+        return True
+    for pattern in _NOISE_PATTERNS:
+        if pattern.search(name):
+            return True
+    return False
 
 
 def open_db(db_path: Path = KUZU_PATH) -> kuzu.Database:
@@ -124,14 +157,20 @@ def sync(db_path: Path = KUZU_PATH, sqlite_path: Path = entity_store.DB_PATH) ->
     resolver = AliasResolver(sqlite_path)
     counts = {"nodes": 0, "relations": 0, "financial_flows": 0, "communications": 0}
 
-    # 1. Entity nodes
+    # 1. Entity nodes — skip noise: bare dates, years, IPs, phone numbers,
+    # registration codes, software versions, and short country codes.
     for row in entity_store.all_entities(sqlite_path):
+        if _is_noise_entity(row["name"], row["entity_type"]):
+            continue
         _merge_entity(conn, row["name"], row["entity_type"], "document")
         counts["nodes"] += 1
 
-    # 2. Document relation edges — ensure both endpoints exist as nodes
+    # 2. Document relation edges — ensure both endpoints exist as nodes.
+    # Skip relations where either endpoint is noise (dates, IPs, phone numbers, etc.)
     for row in entity_store.all_relations(sqlite_path):
         src, tgt = row["source_entity"], row["target_entity"]
+        if _is_noise_entity(src, "Unknown") or _is_noise_entity(tgt, "Unknown"):
+            continue
         for n in (src, tgt):
             _merge_entity(conn, n, "Unknown", "document")
         try:
@@ -182,12 +221,17 @@ def sync(db_path: Path = KUZU_PATH, sqlite_path: Path = entity_store.DB_PATH) ->
                 except Exception:
                     pass
 
-    # 4. Communication edges — resolve recipients via AliasResolver
+    # 4. Communication edges — resolve both sender and recipients via AliasResolver.
+    # Skip nodes that resolve to noise (phone numbers, raw emails, etc.)
     for comm in entity_store.all_comms(sqlite_path):
-        sender = comm["sender_node"]
+        sender = resolver.resolve_person(comm["sender_node"])
+        if _is_noise_entity(sender, "Person"):
+            continue
         _merge_entity(conn, sender, "Person", "comms")
         for raw_recipient in json.loads(comm["recipients"]):
             person_node, company_node = resolver.resolve(raw_recipient)
+            if _is_noise_entity(person_node, "Person"):
+                continue
             _merge_entity(conn, person_node, "Person", "comms")
             if company_node:
                 _merge_entity(conn, company_node, "Company", "comms")
@@ -216,7 +260,7 @@ def cypher(conn: kuzu.Connection, query: str, params: Optional[dict] = None) -> 
     return _rows_to_dicts(result)
 
 
-def entity_subgraph(conn: kuzu.Connection, name: str, hops: int = 2) -> list[dict]:
+def entity_subgraph(conn: kuzu.Connection, name: str) -> list[dict]:
     """
     Return all direct edges connected to a named entity as flat, readable dicts.
     Uses separate queries per relationship type — avoids opaque path objects.
@@ -224,9 +268,9 @@ def entity_subgraph(conn: kuzu.Connection, name: str, hops: int = 2) -> list[dic
     results: list[dict] = []
 
     # Document-extracted typed relations (outgoing and incoming)
-    for direction, src_filter, tgt_filter in [
-        ("outgoing", f"{{name: $name}}", ""),
-        ("incoming", "", f"{{name: $name}}"),
+    for src_filter, tgt_filter in [
+        (f"{{name: $name}}", ""),
+        ("", f"{{name: $name}}"),
     ]:
         rows = cypher(
             conn,

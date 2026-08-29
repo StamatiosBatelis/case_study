@@ -78,6 +78,8 @@ Three options were on the table for entity and relationship extraction from raw 
 
 **Local open-weight LLM (Qwen2.5:7b via Ollama)** threads the needle. Extraction quality is below frontier models — JSON formatting occasionally needs repair, and subtle multi-hop relationships are sometimes missed on the first pass — but it's sufficient for the entity types we need, runs entirely on local hardware, and has no throughput ceiling from API rate limits.
 
+Two extraction controls reduce hallucination significantly. First, `temperature=0` forces the model into its most deterministic mode — entity extraction is a precision task, not a creative one, so stochastic sampling only adds noise. Second, the system prompt explicitly lists what not to extract: dates, phone numbers, IP addresses, registration numbers, monetary amounts, role titles, nationalities, and descriptive phrases. Without these exclusions, a 7B model will treat almost any noun phrase as an entity. The combination reduces extraction noise substantially, though some relation endpoints still slip through as untyped Unknown nodes — these are filtered at graph sync time by a pattern-based noise guard before any node is written to KuzuDB.
+
 On licensing: we specifically chose Qwen2.5:7b (not 3B). The 3B variant ships under a research-only license and cannot be used in company products. Qwen2.5:7b is licensed for commercial use up to 100 million monthly active users — well above the scale of an internal intelligence tool. Llama 3.2 (Apache 2.0 for 1B/3B) would also have been a clean choice, but Qwen2.5:7b performs better on structured extraction tasks at the same parameter count.
 
 The pipeline hybrid reflects a deliberate split:
@@ -105,9 +107,21 @@ If we needed to run PageRank over a subgraph returned by a Cypher query, the rig
 
 ChromaDB is embedded, already a project dependency, and supports metadata filtering — which is how entity anchoring is implemented. When the graph returns entity names, we pass them as a `where` filter to ChromaDB so the vector search is restricted to chunks associated with those entities. Without metadata filtering support, entity anchoring would require a post-retrieval filter over all results, which is much less efficient.
 
-The embedding model is `nomic-embed-text` via Ollama (768 dimensions). It performs well on factual and technical text and requires no separate download if Ollama is already running. The fallback is `all-MiniLM-L6-v2` via sentence-transformers.
+The embedding model is `nomic-embed-text` via Ollama (768 dimensions). It performs well on factual and technical text and requires no separate download if Ollama is already running.
 
 Transactions are not embedded. They're structured records best queried by Cypher. Embedding them would add noise to semantic search results and waste storage.
+
+### Data Flow Across Stores
+
+Each store has a distinct role and a clear write path:
+
+| Store | Contents | Source | Written by |
+|-------|----------|--------|------------|
+| **SQLite** | Raw extracted entities, relations, transactions, comms — exactly as parsed | `documents.json`, `transactions.json`, `comms_log.json` | ETL pipeline |
+| **KuzuDB** | Graph of entity nodes and typed edges — deduplicated, alias-resolved, cross-linked | SQLite | `kuzu_store.sync()` |
+| **ChromaDB** | Embedded text chunks for semantic search — document passages and comms bodies | `documents.json`, `comms_log.json` | `vector_store.index_*()` |
+
+SQLite is the raw write target — ETL writes there and nothing else does. KuzuDB and ChromaDB are both built from SQLite in a second pass. This separation means ETL can be re-run to pick up new source documents without touching the graph or vector stores, and the graph can be re-synced (e.g. after improving the alias resolver) without re-running the expensive LLM extraction step.
 
 ---
 
@@ -125,6 +139,26 @@ A deliberate design principle: use deterministic code everywhere the answer is c
 | Final answer synthesis | Local LLM | Requires reasoning over heterogeneous evidence |
 
 The agent is explicitly constrained: it cannot generate entity names or facts from parametric memory. Every claim in the final answer must cite a source — a document ID, transaction ID, or event ID — that came from a tool call. This is enforced by the system prompt and by passing all retrieved evidence as tool output rather than injecting it into the prompt directly.
+
+---
+
+## Production Scaling
+
+The current stack — KuzuDB embedded, ChromaDB embedded, a single Ollama process — is deliberately simple. It runs on one machine with no external services, which suits the air-gapped prototype well. At production scale (millions of transactions, thousands of documents, concurrent analysts) several things would need to change.
+
+**Graph database.** KuzuDB's embedded model means one writer at a time and the database lives on a single node. For large-scale persistent graph storage with concurrent analyst sessions you'd move to a server-mode graph DB — Neo4j or Amazon Neptune depending on whether on-prem or cloud deployment is acceptable. The Cypher queries would transfer directly to Neo4j. The entity-anchoring retrieval logic stays the same; only the connection layer changes.
+
+**Vector store.** ChromaDB embedded doesn't support distributed search. At millions of document chunks you'd move to a dedicated vector database — Qdrant or Weaviate — both of which support HNSW approximate nearest neighbour search, metadata filtering (which the entity-anchoring relies on), and horizontal scaling. The retriever interface is thin enough that swapping the backend is a one-file change.
+
+**LLM inference.** The system already supports vLLM via the `--base-url` flag — `llm_client.py` speaks to any OpenAI-compatible endpoint, so switching from Ollama to vLLM requires no code changes. At production scale the step up is running vLLM as a multi-GPU cluster with continuous batching and tensor parallelism, which handles concurrent analyst sessions and makes larger quantised models (70B) viable. That meaningfully improves extraction quality on complex documents without touching the application layer.
+
+**ETL at scale.** Extracting entities from millions of documents with a single LLM process would take days. The natural approach is to parallelise across a job queue (Celery, Ray, or a simple thread pool against a vLLM endpoint) where each worker processes one document and writes results to a shared store. The extraction logic is stateless per document, so parallelisation is straightforward.
+
+**Reranking.** The current retriever returns the top-5 results per collection ranked by vector distance — fast, but cosine similarity is a weak relevance signal when chunks are long or queries are ambiguous. At scale, a cross-encoder reranker (e.g. `ms-marco-MiniLM-L-6-v2`) would take the top-k vector candidates and re-score them by full query-document relevance before the LLM sees them. Cross-encoders are too slow to run over the entire corpus but are fast enough over a small candidate set — the typical pattern is ANN retrieval for recall, cross-encoder for precision. For an air-gapped deployment the model runs locally via sentence-transformers, no new infrastructure needed.
+
+**Caching.** In the current prototype, `all_entity_names()` is cached in memory at retriever init, but entity subgraph lookups and embedding calls repeat on every query. At scale, a Redis layer in front of both would eliminate redundant Cypher traversals and re-embeddings for popular entities. Subgraphs are particularly good candidates — the graph changes infrequently relative to how often analysts query the same entity.
+
+**Entity resolution.** The current normalisation approach (stripping legal suffixes, exact string matching) handles simple aliasing. At scale with noisy source data you'd need a proper entity resolution pipeline: candidate blocking by token overlap, pairwise similarity scoring, and a merge step with a human review queue for borderline cases. This is the component that degrades most visibly as data volume and source diversity grow.
 
 ---
 

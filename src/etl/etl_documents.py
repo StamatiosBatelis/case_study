@@ -21,10 +21,15 @@ DOCS_PATH = Path(__file__).parents[2] / "data" / "documents.json"
 console = Console()
 
 SYSTEM_PROMPT = (
-    "You are a precision intelligence extraction engine for an investigation platform. "
-    "Extract all named entities and their typed relationships from the provided document. "
-    "Be thorough: include people, companies, bank accounts, locations, jurisdictions, "
-    "and document references. Use the canonical names exactly as they appear in the text. "
+    "You are a precision intelligence extraction engine. "
+    "Extract named entities and typed relationships from the provided document. "
+    "Only extract entities that are explicitly named in the text — never infer or generate names. "
+    "Valid entity types: Person, Company, Account, Location, Jurisdiction, Bank, Organisation. "
+    "Do NOT extract: dates, years, phone numbers, IP addresses, registration numbers, "
+    "monetary amounts, generic descriptions, role titles, nationalities, or adjectives. "
+    "An entity must be a specific named person, organisation, account, or place — "
+    "not a concept, outcome, or descriptive phrase. "
+    "Use the canonical name exactly as it appears in the text. "
     "Return only the JSON object — no explanation, no markdown fences."
 )
 
@@ -91,6 +96,7 @@ class LocalLLMExtractionEngine:
                     model=self.model,
                     messages=messages,
                     response_format=_RESPONSE_FORMAT,
+                    temperature=0,
                 )
                 raw = response.choices[0].message.content
                 result = DocumentExtractionResult.model_validate_json(raw)

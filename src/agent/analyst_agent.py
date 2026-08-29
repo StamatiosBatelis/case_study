@@ -29,12 +29,11 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
-from typing import Any, Optional
 
 import kuzu
 
 from src.llm_client import OllamaClient
-from src.storage import kuzu_store, vector_store
+from src.storage import kuzu_store
 from src.retrieval.retriever import HybridRetriever
 
 # ---------------------------------------------------------------------------
@@ -95,7 +94,7 @@ _TOOLS = [
                     },
                     "max_hops": {
                         "type": "integer",
-                        "description": "Maximum number of hops to search. Default: 5.",
+                        "description": "Maximum number of hops to search.",
                         "default": 5,
                     },
                 },

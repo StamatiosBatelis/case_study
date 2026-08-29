@@ -105,6 +105,7 @@ class OllamaClient:
         tools: Optional[list[dict]] = None,
         tool_choice: str = "auto",
         response_format: Optional[dict] = None,
+        temperature: Optional[float] = None,
     ) -> ChatResponse:
         payload: dict[str, Any] = {
             "model":    model,
@@ -116,6 +117,8 @@ class OllamaClient:
             payload["tool_choice"] = tool_choice
         if response_format:
             payload["response_format"] = response_format
+        if temperature is not None:
+            payload["temperature"] = temperature
 
         resp = self._http.post(f"{self._base}/chat/completions", json=payload)
         resp.raise_for_status()

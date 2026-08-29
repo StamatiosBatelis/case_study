@@ -6,10 +6,11 @@ Three tables:
   relations    — typed edges extracted from documents (LLM output)
   transactions — financial flows parsed deterministically from transactions.json
 
-Separating storage from graph construction means the NetworkX graph can be
-rebuilt at any time from the DB without re-calling the LLM.
+Separating storage from graph construction means the KuzuDB graph can be
+re-synced at any time from the DB without re-calling the LLM.
 """
 
+import json
 import sqlite3
 import uuid
 from contextlib import contextmanager
@@ -211,7 +212,6 @@ def upsert_comm(record: dict, db_path: Path = DB_PATH) -> None:
     recipients and attachments are stored as JSON strings.
     INSERT OR IGNORE on event_id makes re-runs idempotent.
     """
-    import json as _json
     with _connect(db_path) as conn:
         conn.execute(
             """
@@ -225,9 +225,9 @@ def upsert_comm(record: dict, db_path: Path = DB_PATH) -> None:
             (
                 record["event_id"], record["timestamp"], record["channel"],
                 record["sender_raw"], record["sender_node"],
-                _json.dumps(record.get("recipients", [])),
+                json.dumps(record.get("recipients", [])),
                 record.get("subject"), record.get("body"),
-                _json.dumps(record.get("attachments", [])),
+                json.dumps(record.get("attachments", [])),
                 record.get("ip_address"), record.get("country"),
                 record.get("intent_signal"),
             ),

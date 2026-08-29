@@ -22,9 +22,10 @@ resolution can be improved without re-running LLM calls.
 """
 
 import re
-from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Optional
+
+from thefuzz import fuzz
 
 from src.storage import entity_store
 
@@ -85,7 +86,7 @@ def _normalize(name: str) -> str:
 
 
 def _similarity(a: str, b: str) -> float:
-    return SequenceMatcher(None, a, b).ratio()
+    return fuzz.token_sort_ratio(a, b) / 100.0
 
 
 class AliasResolver:

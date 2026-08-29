@@ -1,107 +1,83 @@
 id,name,entity_type,source_doc
-6e62936a-e424-430f-9661-ab4b4d348695,Northstar Trading Ltd,company,DOC-001
-89efa9dc-fe73-4e39-a527-f9a1cf88b8d4,England and Wales,location,DOC-001
-48b365ab-b5af-4749-aba8-2ae38e8cf5f4,"12 Canary Wharf, London E14 5AB",address,DOC-001
-f1f0063b-4b85-4722-aff6-baa118927380,David Okafor,person,DOC-001
-e62593cd-913a-4511-b6c9-edfb848cc21c,13847291,company_registration_number,DOC-001
-a66f3827-e02f-43fc-9b7c-e499228f70c9,internal_analyst,source,DOC-001
-7855e8a7-8f9e-41d3-bda4-d28da8ffcc3b,Elena Ross,person,DOC-002
-861c202f-4fec-4af7-a173-0ff0e30f5e5b,Marcus Vane,person,DOC-002
-e01527e0-cbab-4a14-8a31-2a7a7f271936,James Chen,person,DOC-002
-2685ca0a-11ee-4dd5-b139-3a870ad0f5d2,Amsterdam,location,DOC-002
-c754734a-d6e2-4333-be4d-2b42267afb43,Frankfurt,location,DOC-002
-6fda1e5c-7a9d-4fc8-9ecd-d2cca7d8cecd,Romania,location,DOC-002
-f3624fab-81b7-478e-aa89-0b841f3329e9,UK,location,DOC-002
-db03122f-c9c9-4866-8ea6-bc7f8c75bdf3,Germany,location,DOC-002
-d61c3f80-dc99-49f0-9b82-463658ef1277,Dutch,nationality,DOC-002
-ef75b4d3-87fc-4bf9-be9f-a9d3e634df67,internal_analyst,source,DOC-002
-e61c6636-e232-4e58-9b05-0c049579b9f1,2021,date,DOC-002
-363d4bd9-07ce-4d72-bf39-72c530e4314c,2024-02-20,date,DOC-002
-c3e37729-23f3-494d-a6b9-6b84fe567b88,independent financial consultant,occupation,DOC-002
-8de8d910-760a-4394-92d8-b6b874fc1d02,privatenet.com,domain,DOC-002
-55718634-cc09-41ac-9fc1-f74d4b05a03c,+31612345678,phone_number,DOC-002
-84a59a81-70bf-46cf-bc57-8cd28700968e,elena.ross@privatenet.com,email,DOC-002
-a76d0eee-529e-4d27-ba7d-55e61103781a,shell-corp.io,domain,DOC-003
-7f2c68e6-108b-42e5-8b43-d4fee45c93b1,Namecheap,company,DOC-003
-8f8d29bd-d685-4654-8062-186f7bcf0756,Choopa LLC,company,DOC-003
-c6f476b7-1e5f-48a1-83f0-731968faf678,Romania,location,DOC-003
-5939e0c7-300e-4550-89e8-594a393ae850,ProtonMail,company,DOC-003
-62a35ae6-7423-4464-9670-b7c05fa965e7,Eastern European,location,DOC-003
-027643aa-678e-424f-ad8c-1c2983c4f095,offshore financial structures,financial_institution,DOC-003
-16082b44-8f78-4293-a082-a1fb98220d3a,marcus.vane@shell-corp.io,email_address,DOC-003
-f7450219-b3b8-4a34-8d7d-3463a59e2284,onboarding@shell-corp.io,email_address,DOC-003
-b37270ac-4c93-4208-99ab-8de85830ef7e,ACC-4471,bank_account,DOC-004
-a1a84bb4-ee27-46e8-a35f-0e9dc16f4919,James Chen,person,DOC-004
-074c1327-e3bc-4d56-96b0-0dd99ae45784,"14 Brentwood Ave, London SE1 7HT",address,DOC-004
-2e5ef728-6c46-45b7-88dd-ad180b862839,Northstar Trading Ltd,company,DOC-004
-245a2a94-ec78-4a4a-9bac-55251b10e836,POCA 2002,legislation,DOC-004
-79b7cb8b-9982-43f6-b51d-a2f99a1b96a3,clearbank_demo_compliance,source,DOC-004
-8cb5b396-9f40-47bb-892c-256829023a07,TXN-2003,transaction,DOC-004
-4bf53080-3f5d-4066-b53b-03088da89928,ROT-2024-0312,cargo_consignment_reference,DOC-005
-12592d33-6ea0-42c3-810c-898a6988f456,Rotterdam,location,DOC-005
-791656cc-af84-4d47-9683-85d80f87979d,Bucharest,location,DOC-005
-9829180a-dac1-4568-bd0c-ac76fb58bfe0,RO,jurisdiction,DOC-005
-ee1dd1b4-98f6-449b-9a5f-4231396b3b24,Freight Anon BV,company,DOC-005
-5c99b018-6c4e-4d10-8862-b414f405bbf9,NL,jurisdiction,DOC-005
-09a7570c-1219-48a0-8435-bb21c8af26d4,Bluewater Ventures Ltd,company,DOC-005
-631646a4-2f3e-4a90-9f6c-3d865e78beff,BVI,jurisdiction,DOC-005
-14341c6a-c0d7-4b44-8d78-6bf3676df752,FIOD,organization,DOC-005
-8e4361aa-ac9b-43ac-b740-e334950aa033,freight-anon.com,domain,DOC-005
-83022f10-91ca-400e-a165-803b1dc6b711,Harrington Capital Partners,company,DOC-006
-5d716126-e84d-496b-8ddd-5dabc2ee2b09,Swiss-registered investment advisor,company,DOC-006
-5d6d990a-ff21-4ca3-bfc1-827914f1c87c,CHE-123.456.789,registration_number,DOC-006
-1e65809c-56ad-43ec-804e-757ed43708ef,Zurich,location,DOC-006
-6e77562c-585b-44b1-9408-bd85c15bf67a,Northstar Trading Ltd,company,DOC-006
-37c06e09-4a96-4e55-9e77-931d178290eb,UK,location,DOC-006
-e6197927-ddb7-4fb1-8630-4aeb94d05768,Bluewater Ventures Ltd,company,DOC-006
-54e63c6f-db93-4efc-9a9c-3574de4bd0cc,BVI,location,DOC-006
-781be757-90af-420d-8c26-a114f11bcbca,Le Temps,publication,DOC-006
-82b764f7-fcc2-411c-adab-b3cf6f701910,2022,date,DOC-006
-6af3f2bd-8457-41bf-abb1-e95d3dfdc3d9,FINMA,regulatory_body,DOC-006
-d9e533d3-5c9d-4cc2-9987-8bf6d24906b3,sanctioned jurisdictions,jurisdiction,DOC-006
-2b8fc3ef-bd47-4445-88e1-f2c757d7134d,Marcus Vane,person,DOC-007
-a715d1c4-ebfd-4333-948c-22c9cd9bc5bb,Elena Ross,person,DOC-007
-f3e00b3c-e5b9-43fd-a2e9-d168b9555f3b,Shell Corp IO Ltd,company,DOC-007
-ee6b6d8a-3110-4531-a540-f411ee8d84d7,BCR Romania,bank,DOC-007
-326a8109-dcbd-44f1-93cc-122428c8e46d,ACC-MV-01,bank_account,DOC-007
-f8a63418-183b-42c6-ae64-d62ffd378d0d,Bucharest,location,DOC-007
-d74fb34f-c42a-473f-918e-b5d49229dd56,Romania,location,DOC-007
-ade15d6d-b39d-4480-bc82-f7a04451ae70,Netherlands,location,DOC-007
-d3831d73-e654-42b1-be95-a78ab20198d2,2024-02-28,date,DOC-007
-6e823474-a462-4a6f-a9f2-1885c2b0ba6f,2024-03-02,date,DOC-007
-203f5f49-c200-4969-b31c-05d908f6d4e1,2024-03-28,date,DOC-007
-fc2f73fc-d1d7-4ba7-9c55-680d6928440b,185.220.101.34,ip_address,DOC-007
-bb112e41-297b-4312-b8eb-9702ece08a9d,internal_analyst,source,DOC-007
-83e82bdc-e212-411c-8b7d-25385058e406,Northstar Trading Ltd,company,DOC-008
-8023e70f-1e9c-460a-abfe-f944851b1f6e,NatWest,bank,DOC-008
-cb450986-a7f4-4508-878c-f753014f00b1,evt_003,event,DOC-008
-ed1172df-f0ff-487a-a46e-acc99eb52f86,wire_instructions_march.pdf,document,DOC-008
-62b0ac54-6a92-4cd2-9f47-0d04667f1fde,James Chen,person,DOC-008
-6297515a-0fbe-403c-9e06-acbebf5f27d8,LibreOffice 7.4,software,DOC-008
-03e0c7c1-10b8-4308-bcad-bf5c2f9b495f,TXN-2001,transaction,DOC-008
-80e2471a-eac6-42e1-8c23-ae36784488fe,TXN-2002,transaction,DOC-008
-2c368953-101c-4538-b04d-0f1c59c3c92c,TXN-2003,transaction,DOC-008
-8d726ead-60fe-46fc-8e2b-24b284eafd2f,Bluewater Ventures Ltd,company,DOC-009
-2cb010bd-251d-4948-8ffe-0b6c2fe28a0f,BVI,location,DOC-009
-965211c9-6962-4a76-a9f6-3b64c70e5006,Apex Corporate Services Ltd (BVI),company,DOC-009
-f856a994-73a1-4c03-834e-cbc96fec7083,Elena Ross,person,DOC-009
-c3e331c0-7225-48fe-8de6-f9b295da8fab,Stiftung Bluewater,company,DOC-009
-91ad34bf-2102-4d4e-92d5-88c44933866a,Shell Corp IO,company,DOC-009
-639158d8-7dc1-4bb6-991f-c58ef94c8a7b,Harrington Capital Partners,company,DOC-009
-50670af5-0713-46c4-b034-ecd02819ac3a,Operation TIDELINE,operation,DOC-010
-770fe640-f632-4861-8935-e12b2adc548d,Marcus Vane,person,DOC-010
-a52d3758-e4a9-4782-a658-ffb04c88aa9a,Elena Ross,person,DOC-010
-24f167c8-dac7-4910-80ce-ef7bab065428,James Chen,person,DOC-010
-a034b564-ba4e-4e6c-904c-2ff6a433bd7b,Northstar Trading Ltd,company,DOC-010
-6f4bb077-f4dc-4b09-ac0c-5d5e8c3e4d9c,Harrington Capital Partners,company,DOC-010
-bd9b7bc5-e5d7-4c02-b14f-953b39e8ff56,Bluewater Ventures Ltd,company,DOC-010
-c5ebc77c-347f-4222-a276-54bfd5f3c08a,ACC-4471,bank_account,DOC-010
-bc711276-5ac2-4148-ad2b-8d5f4bc45a06,Rotterdam port,location,DOC-010
-7b62ebaa-3b59-49f5-9d05-fe302fb358b7,Netherlands,location,DOC-010
-1dedd5f0-03e2-478f-8a4c-ebd845da1989,UK,location,DOC-010
-bf0c3db0-f5e6-4206-972a-02b5f97b72fc,Romania,location,DOC-010
-0da6963d-71f7-46d5-b285-6ae4e9995d91,Switzerland,location,DOC-010
-1d133c8a-9b80-4339-982b-12a4496b6d25,British Virgin Islands,location,DOC-010
-ac96139e-55ba-4880-ac6f-b2cc44dbb7bc,ROT-2024-0312,document_reference,DOC-010
-3f8a495b-d92d-48b4-8c5b-d66a835f74d4,Eurojust,organization,DOC-010
-7bffd3a5-c356-465d-9d59-a9b97a4afdfa,NCA,organization,DOC-010
+58c9c191-0786-401b-9986-23c0d7db88aa,Northstar Trading Ltd,Company,DOC-001
+d9fa1238-41a5-4d8a-84b2-482b37fa21c0,England and Wales,Jurisdiction,DOC-001
+185dace4-4045-4b0f-b9e1-5488d6fa7eec,Canary Wharf,Location,DOC-001
+a6522f92-89eb-4254-b241-466dcc31f18f,London,Location,DOC-001
+fd9cf4e9-840e-4c68-b623-e64c5011f4ac,David Okafor,Person,DOC-001
+c4ae4c26-b700-4fcc-b744-9abaf51370d1,Elena Ross,Person,DOC-002
+e10a13db-f420-4322-9d49-7d253c6b17a4,Marcus Vane,Person,DOC-002
+6368d5ac-a1c3-48d8-8f3a-832e60efa35d,James Chen,Person,DOC-002
+b8708cfa-dd62-47f2-98df-d431b4a3d868,Amsterdam,Location,DOC-002
+6bb868ee-3e56-4a6c-8571-5c66bfd5352e,Frankfurt,Location,DOC-002
+46b03a2e-435b-4456-9798-f17904361cf4,Dutch,Location,DOC-002
+6f927eb4-f205-4e89-b591-1f087b45dd49,Romania,Location,DOC-002
+96283d9f-fffc-4320-96e1-dd8f01a01c3e,UK,Location,DOC-002
+95168524-d3e6-44f6-8a04-d4475a51e064,Germany,Location,DOC-002
+8aedeba3-7b8a-41d9-ab9a-66c5577efbb3,privatenet.com,Account,DOC-002
+1ff803a7-4129-45c2-8c1d-d6cdf31bca87,shell-corp.io,Account,DOC-003
+689e7cf9-a47a-4a64-addc-3d541adf3d67,Namecheap,Company,DOC-003
+c843c11c-52b4-4fc6-bd12-0fd08b15422a,Choopa LLC,Company,DOC-003
+26348601-359f-45d8-b1e1-1be98ec8c2ce,Romania,Location,DOC-003
+e2bdfbcf-7dc4-4dc4-adc7-1ccfcf899092,ProtonMail,Company,DOC-003
+1a9b3775-ab25-4509-808f-2e65e983588f,marcus.vane@shell-corp.io,Account,DOC-003
+80ad4f86-2c68-4d8e-8059-c213352ca436,onboarding@shell-corp.io,Account,DOC-003
+8480b0cd-9499-491d-b2e9-2f12947fc854,ACC-4471,Account,DOC-004
+6539e061-6754-424b-9b37-6fd8bbae1b27,James Chen,Person,DOC-004
+298574dd-af8e-41bc-88d0-88d84cf9d069,Northstar Trading Ltd,Company,DOC-004
+f66e32e0-acb4-4643-a98b-97c443a28c55,clearbank_demo_compliance,Account,DOC-004
+23d722cb-cbf5-4cde-bb00-2b61af2958ff,"14 Brentwood Ave, London SE1 7HT",Location,DOC-004
+bd5333b8-5460-4f0b-92b0-bc4ed541bd9b,British,Jurisdiction,DOC-004
+1bb7558d-b70b-45b4-967f-53241bd17e9f,NCA,Organisation,DOC-004
+2b4f08c7-d598-4d89-97f3-7f6ba1f98378,Rotterdam,Location,DOC-005
+e5923383-9408-4a34-8738-bf33c7e5f20c,Bucharest,Location,DOC-005
+6d91b5f5-428e-4f6b-afae-d6eafd4ee3aa,BVI,Location,DOC-005
+e3697df8-fa12-43ed-b1be-fe6cdbde0f51,Freight Anon BV,Company,DOC-005
+9a511013-aa99-44b3-877e-b995bfe8b5e6,Bluewater Ventures Ltd,Company,DOC-005
+f2445336-14ef-470b-885f-1e62e2d40600,FIOD,Organisation,DOC-005
+29ed3716-1311-40cc-a039-0e179b489fb9,Harrington Capital Partners,Company,DOC-006
+8285b55d-06a5-4470-ad0e-e046326d072d,Swiss-registered investment advisor,Company,DOC-006
+c58d6ff1-0663-458e-a59f-7cf79568a668,CHE-123.456.789,Account,DOC-006
+95657c53-6404-4848-93a1-c095732c0f94,Zurich,Location,DOC-006
+b78806bd-c4cb-45bd-9d74-150191968d7e,Northstar Trading Ltd,Company,DOC-006
+5c4363fa-44da-458d-9c1f-0c544b3bcdaf,UK,Location,DOC-006
+0c9760a5-a02d-40e2-90ae-0b3befe02099,Bluewater Ventures Ltd,Company,DOC-006
+d9abd9bb-3748-4b71-9ca8-c192a36bedc7,BVI,Location,DOC-006
+a96bbd38-8516-4af6-a89b-466afdfe08b6,Le Temps,Location,DOC-006
+f6ca2c2d-ea8d-4687-93da-776455c0b1bd,FINMA,Organisation,DOC-006
+21d8af52-92f0-4113-9f58-45707daf5e10,Swiss,Location,DOC-006
+46cd3ca0-f64d-45bd-9cd5-df1fecf31a30,Marcus Vane,Person,DOC-007
+428c4823-edce-4416-bc0c-7b53aea6f1ba,Elena Ross,Person,DOC-007
+ae124863-894e-4308-abfd-cba270be9b4e,Shell Corp IO Ltd,Company,DOC-007
+74fdf5c2-d1ed-42dc-aee4-078dce1bcd9f,BCR Romania,Bank,DOC-007
+d3dd397d-911c-4e5a-a22b-c2d2d174eae6,ACC-MV-01,Account,DOC-007
+ae676c78-39c3-4779-979f-4e2b7a97a441,Bucharest,Location,DOC-007
+835e27eb-779d-415e-b17f-6da18f70e504,Romania,Location,DOC-007
+24aec607-5bb0-416c-80d3-ea5710eda1ea,Netherlands,Location,DOC-007
+f84dc426-bc0f-4c8c-b9f2-16103d58b098,Northstar Trading Ltd,Company,DOC-008
+668c499f-e1d7-4f35-ac7f-2129a9a0f449,NatWest,Bank,DOC-008
+0cef1f59-98b0-4223-b715-c506325cafb1,evt_003,Account,DOC-008
+a3adb948-cc40-41e0-b0fc-58415386aeba,James Chen,Person,DOC-008
+3cf973fb-bbea-4315-88b8-e72ba1eef632,Bluewater Ventures Ltd,Company,DOC-009
+e9eaa523-951d-4e86-906a-48c489f28bf3,BVI,Jurisdiction,DOC-009
+1bb51c58-dffd-42ed-848a-2ef14095da27,Apex Corporate Services Ltd (BVI),Company,DOC-009
+a900caf9-2f8c-4329-b23c-ea28b91b469a,Shell Corp IO,Company,DOC-009
+560f80b3-4f8b-4e4e-8540-ca669707c26c,j.chen@freemail.org,Account,DOC-009
+8522130b-7870-400e-a8fa-1cb833c3b356,Harrington Capital Partners,Company,DOC-009
+8cbefb9b-296a-4529-9da1-6dd144c2cc68,Stiftung Bluewater,Company,DOC-009
+5bf72832-60d6-49fe-9a27-2929faf7d1ae,Elena Ross,Person,DOC-009
+bd1b7c9a-c4dd-4966-bc38-046f9cf4bafe,Operation TIDELINE,Operation,DOC-010
+716961c9-b612-429a-a97c-219fab077e3f,Marcus Vane,Person,DOC-010
+d3577fa7-1dd3-4aeb-8b20-fc4acf37fc1f,Elena Ross,Person,DOC-010
+9b3e2132-b5c0-4c2c-a8f1-327ee7fc82fd,James Chen,Person,DOC-010
+2926e76e-ecab-4cad-aada-ec013f9e7a83,ACC-4471,Account,DOC-010
+7d9412f5-f0b7-4a67-b3d0-f84f401c2330,Northstar Trading Ltd,Company,DOC-010
+258453e3-4702-4531-b795-01b91cfbd936,Harrington Capital Partners,Company,DOC-010
+e65aa50f-37ce-4fb1-8a6a-e54857598500,Bluewater Ventures Ltd,Company,DOC-010
+ab08529d-6662-476a-bc66-e17da3fcd153,Rotterdam,Location,DOC-010
+eb021e98-c2c1-4f30-9444-ba1a5e54a6ae,Rotterdam port,Location,DOC-010
+87c80dc6-b4af-4edb-8540-f40ab7a4fe5d,British Virgin Islands,Location,DOC-010
+d2cddc10-6a4d-4258-aeea-86e624b96a52,UK,Location,DOC-010
+922967bd-c5a2-4e2a-98a8-5143ee6b3a39,Netherlands,Location,DOC-010
+2b5761a0-a071-445e-aa5f-b8623c9711dc,Switzerland,Location,DOC-010
+b48214db-7693-45eb-ad3b-ac11ecc5a700,CH,Jurisdiction,DOC-010
+fab1d238-33dc-46c4-83ec-54274c4545ad,ROT-2024-0312,Account,DOC-010

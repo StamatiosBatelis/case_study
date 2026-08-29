@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 
 class ExtractedEntity(BaseModel):
     name: str = Field(
-        description="Canonical normalised name: 'Elena Ross', 'ACC-4471', 'Northstar Trading Ltd'"
+        description="Canonical normalised name, e.g. 'John Smith', 'ACC-1234', 'Acme Corp Ltd'"
     )
     entity_type: str = Field(
         description="One of: Person, Company, Account, Location, Jurisdiction, Document, Event"
@@ -51,14 +51,14 @@ class CommsBodyExtraction(BaseModel):
         description=(
             "Canonical names of people, companies, or accounts explicitly or implicitly "
             "mentioned in the message body. Use the same normalised form as other sources "
-            "(e.g. 'Elena Ross', 'Northstar Trading Ltd', 'ACC-4471')."
+            "(e.g. 'John Smith', 'Acme Corp Ltd', 'ACC-1234')."
         )
     )
     sender_alias: Optional[str] = Field(
         default=None,
         description=(
             "Resolved canonical name of the sender if it can be inferred from the message "
-            "content or email address (e.g. 'marcus.vane@shell-corp.io' → 'Marcus Vane'). "
+            "content or email address (e.g. 'j.smith@acme.io' → 'John Smith'). "
             "Null if uncertain."
         )
     )

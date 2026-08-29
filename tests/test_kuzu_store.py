@@ -139,5 +139,5 @@ class TestQueryHelpers:
         kuzu_store.sync(tmp_kuzu, tmp_sqlite)
         db = kuzu_store.open_db(tmp_kuzu)
         conn = kuzu.Connection(db)
-        results = kuzu_store.entity_subgraph(conn, "Alice", hops=2)
+        results = kuzu_store.entity_subgraph(conn, "Alice")
         assert isinstance(results, list)

@@ -32,10 +32,13 @@ console = Console()
 
 SYSTEM_PROMPT = (
     "You are an intelligence analyst assistant. Given a communication record, "
-    "identify: (1) canonical names of people, companies or accounts mentioned "
-    "in the body text; (2) the real-world identity of the sender if it can be "
-    "inferred from the email address or message content; (3) a short intent label "
-    "if the message reveals coordination, financial instruction, or evasion. "
+    "identify: (1) canonical names of specific people, companies, or accounts mentioned "
+    "in the body text — only extract explicitly named entities, never infer or generate names; "
+    "(2) the real-world identity of the sender if it can be confidently inferred from the "
+    "email address or message content; (3) a short intent label if the message reveals "
+    "coordination, financial instruction, or evasion — null if benign or unclear. "
+    "Do NOT extract: dates, phone numbers, IP addresses, generic role titles (e.g. 'compliance team'), "
+    "nationalities, or descriptive phrases. Only named people, companies, and account identifiers. "
     "Return only the JSON object — no prose, no markdown."
 )
 
@@ -103,6 +106,7 @@ class LocalLLMCommsEngine:
                     model=self.model,
                     messages=messages,
                     response_format=_RESPONSE_FORMAT,
+                    temperature=0,
                 )
                 raw = response.choices[0].message.content
                 result = CommsBodyExtraction.model_validate_json(raw)

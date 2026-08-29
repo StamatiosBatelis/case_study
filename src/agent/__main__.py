@@ -10,6 +10,7 @@ Type '/debug' before a question to print tool call trace.
 """
 
 import argparse
+import json
 import sys
 
 import kuzu
@@ -125,7 +126,6 @@ def main() -> None:
 
 
 def json_compact(d: dict) -> str:
-    import json
     return json.dumps(d, separators=(",", ":"))
 
 
