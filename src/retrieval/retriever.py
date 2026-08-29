@@ -28,8 +28,8 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import kuzu
-
 import chromadb
+from thefuzz import fuzz
 
 from src.resolution.alias_resolver import _normalize
 from src.storage import kuzu_store, vector_store
@@ -160,25 +160,30 @@ class HybridRetriever:
     # Minimum token length for an entity name to be used in spotting.
     # Filters noisy LLM-extracted abbreviations (RO, NL, UK, BVI, JC…)
     _MIN_SPOT_LEN = 4
+    # Fuzzy similarity threshold for pass 3 (token_sort_ratio, 0–100 scale)
+    _FUZZY_THRESHOLD = 82
 
     def _spot_entities(self, query: str) -> list[str]:
         """
         Return known entity names referenced in the query.
 
-        Two-pass matching:
-          1. Exact word-boundary substring match ("Northstar Trading Ltd" in query).
-          2. Normalised match — legal suffixes stripped from both the entity name
-             and the query before comparison, so "Northstar Trading" in a query
-             matches canonical "Northstar Trading Ltd" in the graph.
+        Three-pass matching:
+          1. Exact word-boundary substring match.
+          2. Normalised match — legal suffixes stripped from both sides, so
+             "Northstar Trading" matches canonical "Northstar Trading Ltd".
+          3. Fuzzy match via token_sort_ratio — catches typos and minor
+             word-order variations (e.g. "Harrington Partners Capital" still
+             matches "Harrington Capital Partners"). Does not handle
+             single-initial abbreviations like "David O." — those require a
+             dedicated NER tagger and are noted as a known limitation.
 
         Deduplication keeps the longest (most specific) form when multiple
-        candidates refer to the same entity (e.g. a bare name and its suffixed form).
+        candidates resolve to the same normalised root.
         """
         q_lower = " " + query.lower() + " "
-        # Also build a suffix-stripped version of the query for normalised matching
         q_norm  = " " + _normalize(query.lower()) + " "
 
-        found: dict[str, str] = {}  # canonical_name → match_key (for dedup)
+        found: dict[str, str] = {}
 
         for name in self._entity_names:
             if len(name) < self._MIN_SPOT_LEN:
@@ -198,7 +203,20 @@ class HybridRetriever:
             else:
                 normed = False
 
-            if exact or normed:
+            # Pass 3: fuzzy — partial_ratio finds the best matching window of
+            # the entity name's length within the query, catching typos like
+            # "Markus Vane" → "Marcus Vane". token_sort_ratio is used in the
+            # alias resolver for same-length company name comparison; partial_ratio
+            # is more appropriate here because entity names are much shorter than
+            # the full analyst query.
+            fuzzy = (
+                not exact and not normed
+                and n_norm
+                and len(n_norm) >= self._MIN_SPOT_LEN
+                and fuzz.partial_ratio(n_norm, q_norm.strip()) >= self._FUZZY_THRESHOLD
+            )
+
+            if exact or normed or fuzzy:
                 found[name] = n_norm or n_lower
 
         # Prefer longer (more specific) names — deduplicate by normalised form
@@ -207,7 +225,6 @@ class HybridRetriever:
         seen_norms: set[str] = set()
         for name in candidates:
             norm = found[name]
-            # Skip if a longer canonical form sharing the same normalised root is kept
             if not any(norm in s for s in seen_norms):
                 deduped.append(name)
                 seen_norms.add(norm)

@@ -162,6 +162,18 @@ The current stack — KuzuDB embedded, ChromaDB embedded, a single Ollama proces
 
 ---
 
+## Design Decisions — Clarifications
+
+Three architectural questions worth addressing explicitly.
+
+**Query-time entity spotting** uses three passes: exact word-boundary match, legal-suffix normalised match, and fuzzy `partial_ratio` match via `thefuzz` to handle typos (e.g. "Markus Vane" resolves to "Marcus Vane"). `partial_ratio` is the right function here — it finds the best matching window of the entity name's length within the full query string, which is the correct comparison when a short entity name is being searched in a longer sentence. `token_sort_ratio` (used in the alias resolver) is better suited to same-length string comparisons like two company name variants. Single-initial abbreviations like "David O." are a known limitation — catching those reliably requires a NER tagger with coreference resolution, which a 7B local model cannot provide deterministically. The three-pass approach catches the realistic failure modes (minor typos, dropped legal suffixes, reordered tokens) without introducing false positives from overly loose matching.
+
+**KuzuDB schema drift from LLM-extracted relation types** is not a problem in this design because we deliberately chose a single `RELATION` table with `relation_type` stored as a string property — rather than one typed REL table per relationship (e.g. a separate `BENEFICIAL_OWNER_OF` table). Any string the LLM produces is stored without a schema declaration. The trade-off is that Cypher pattern matching on a specific relation type (`WHERE r.relation_type = 'DIRECTOR_OF'`) is a property filter rather than a schema constraint, which is slightly less efficient but completely tolerant of LLM output variance. No normalisation layer is needed because there is no typed schema to violate.
+
+**Raw Cypher in the agent tool list** is an escape hatch, not the primary interface. The `retrieve()` and `trace_money()` tools are fully parametric — they call pre-validated Python functions that execute Cypher templates internally. `retrieve()` maps to `entity_subgraph()` and `vector_store.search()`; `trace_money()` maps to the BFS traversal in `money_path()`. The LLM never writes Cypher for these. The `cypher()` tool exists for edge cases where an analyst needs a precise lookup that the parametric tools don't cover — it is intentionally last in the tool list and the system prompt steers the model toward the parametric tools first. In practice, Qwen2.5:7b rarely reaches for raw Cypher.
+
+---
+
 ## What This System Intentionally Doesn't Do
 
 The agent won't speculate beyond retrieved evidence. If a money path is incomplete — a transaction leads to a terminal account with no outgoing edges — the agent says so rather than inferring what probably happened next.
