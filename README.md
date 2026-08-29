@@ -68,17 +68,17 @@ pip install -r requirements.txt
 
 ## Running
 
-### Step 1 — Build the knowledge stores
+> **Quick start:** the pre-built KuzuDB graph, ChromaDB vector index, and SQLite extraction database are all included in the repo. Skip Step 1 and go straight to Step 2 — Ollama still needs to be running for the embedding model used at query time.
 
-Runs ETL across all three source files and populates KuzuDB (graph) and ChromaDB (vector):
+### Step 1 — Build the knowledge stores (optional)
+
+Only needed if you want to re-run extraction from scratch or with a different model. Runs ETL across all three source files and repopulates KuzuDB (graph) and ChromaDB (vector):
 
 ```bash
 python -m src.pipeline
 ```
 
-This takes a few minutes — the LLM extracts entities and relationships from each document and communication. Run it once; subsequent app/agent starts reuse the built stores.
-
-To point at a different model or a vLLM endpoint:
+This takes a few minutes — the LLM extracts entities and relationships from each document and communication. To point at a different model or a vLLM endpoint:
 
 ```bash
 python -m src.pipeline --base-url http://localhost:8000/v1 --model Qwen/Qwen2.5-7B-Instruct
@@ -118,11 +118,9 @@ The mock dataset is in `data/` — a few dozen records per source, enough to dem
 
 | File | Source | Records |
 |------|--------|---------|
-| `documents.json` | Intelligence reports (unstructured) | 8 docs |
-| `comms_log.json` | Communications log (semi-structured) | ~30 events |
-| `transactions.json` | Financial transactions (structured) | ~25 transactions |
-
-The pre-built KuzuDB graph (`data/kuzu_db/`) and ChromaDB vector index (`data/chroma_db/`) and the SQLite extraction database (`data/knowledge_graph.db`) are all included in the repo. You can skip Step 1 entirely and go straight to Step 2 — Ollama still needs to be running for the embedding model used at query time.
+| `documents.json` | Intelligence reports (unstructured) | 10 docs |
+| `comms_log.json` | Communications log (semi-structured) | 15 events |
+| `transactions.json` | Financial transactions (structured) | 12 transactions |
 
 ---
 
