@@ -178,6 +178,20 @@ Three architectural questions worth addressing explicitly.
 
 ---
 
+## Risks
+
+**Extraction quality is the highest-risk component.** A 7B local model with `temperature=0` and strict prompts produces meaningfully better output than an unconstrained model, but it still misses subtle multi-hop relationships, occasionally assigns wrong entity types, and can hallucinate relation contexts for complex documents. Every claim the agent makes should be verified against the cited source IDs before acting on it. The system is designed for analyst support, not autonomous decision-making.
+
+**Entity deduplication is conservative by design, which means false negatives.** "Shell Corp IO" and "Shell Corp IO Ltd" are kept as separate nodes unless there is a structural signal (same account number, explicit alias edge). In a real investigation this means a query about one may not surface evidence linked to the other. The alternative — aggressive fuzzy merging — risks false positives, which in an intelligence context is a more dangerous failure mode. Analysts should be aware that partial name variants may need to be queried separately.
+
+**The LLM agent can be steered by adversarial document content.** If a source document contains instructions designed to manipulate LLM behaviour (prompt injection via document body), the extraction or reasoning step could be affected. Mitigations: all tool inputs and outputs are logged for audit, the agent is constrained to cite source IDs, and retrieved evidence is passed as tool output rather than injected into the system prompt. A production system would add input sanitisation at the ETL boundary.
+
+**KuzuDB embedded lock means no concurrent writes.** The pipeline and the agent cannot run on the same machine simultaneously — KuzuDB will raise a file lock error. This is an operational constraint: ingestion must complete before the query service starts. In production this is enforced by scheduling (cron, Airflow), not by the application code.
+
+**The graph is only as fresh as the last pipeline run.** New documents, transactions, or communications do not appear in the agent's answers until the pipeline is re-run. For high-velocity sources (real-time comms, live transaction feeds) this lag is a real risk. The architecture supports incremental re-runs (ETL is idempotent on `txn_id`, `event_id`, `doc_id`), but triggering and scheduling that falls outside this prototype.
+
+---
+
 ## What This System Intentionally Doesn't Do
 
 The agent won't speculate beyond retrieved evidence. If a money path is incomplete — a transaction leads to a terminal account with no outgoing edges — the agent says so rather than inferring what probably happened next.

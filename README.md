@@ -122,7 +122,7 @@ The mock dataset is in `data/` — a few dozen records per source, enough to dem
 | `comms_log.json` | Communications log (semi-structured) | ~30 events |
 | `transactions.json` | Financial transactions (structured) | ~25 transactions |
 
-The pre-built KuzuDB graph (`data/kuzu_db/`) and ChromaDB index (`data/chroma_db/`) are included in the repo so you can skip Step 1 and go straight to Step 2 if you just want to run the agent.
+The pre-built KuzuDB graph (`data/kuzu_db/`) and ChromaDB vector index (`data/chroma_db/`) and the SQLite extraction database (`data/knowledge_graph.db`) are all included in the repo. You can skip Step 1 entirely and go straight to Step 2 — Ollama still needs to be running for the embedding model used at query time.
 
 ---
 

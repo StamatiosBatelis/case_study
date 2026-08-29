@@ -8,5 +8,5 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
-chroma_db/
+/chroma_db/
 *.sqlite
