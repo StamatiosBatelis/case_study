@@ -1,0 +1,13 @@
+txn_id,timestamp,txn_type,amount,currency,sender_node,sender_name,sender_country,receiver_node,receiver_name,receiver_country,reference,flagged
+TXN-2001,2024-03-03T08:30:00Z,wire_transfer,48500.0,USD,ACC-4471,James Chen,GB,Northstar Trading Ltd,Northstar Trading Ltd,GB,Consulting services Q1,0
+TXN-2002,2024-03-05T14:10:00Z,wire_transfer,49200.0,USD,ACC-4471,James Chen,GB,Northstar Trading Ltd,Northstar Trading Ltd,GB,Consulting services Q1 - tranche 2,0
+TXN-2003,2024-03-07T09:05:00Z,wire_transfer,47800.0,USD,ACC-4471,James Chen,GB,Northstar Trading Ltd,Northstar Trading Ltd,GB,Consulting services Q1 - tranche 3,1
+TXN-2004,2024-03-07T11:00:00Z,wire_transfer,45000.0,USD,ACC-NST-01,Northstar Trading Ltd,GB,Harrington Capital Partners,Harrington Capital Partners,CH,Investment placement,0
+TXN-2005,2024-03-08T10:30:00Z,wire_transfer,50000.0,USD,ACC-NST-01,Northstar Trading Ltd,GB,Harrington Capital Partners,Harrington Capital Partners,CH,Investment placement - tranche 2,0
+TXN-2006,2024-03-09T15:45:00Z,wire_transfer,47000.0,USD,ACC-NST-01,Northstar Trading Ltd,GB,Harrington Capital Partners,Harrington Capital Partners,CH,Investment placement - tranche 3,0
+TXN-2007,2024-03-10T08:00:00Z,crypto_purchase,30000.0,USD,ACC-HC-01,Harrington Capital Partners,CH,OTC Desk - AlphaFX,OTC Desk - AlphaFX,AE,BTC acquisition - client mandate,0
+TXN-2008,2024-03-10T12:30:00Z,cash_deposit,9800.0,EUR,Unknown - cash,Unknown - cash,NL,ACC-ER-01,Elena Ross,NL,Cash deposit - branch NL,0
+TXN-2009,2024-03-11T09:15:00Z,cash_deposit,9500.0,EUR,Unknown - cash,Unknown - cash,NL,ACC-ER-01,Elena Ross,NL,Cash deposit - branch NL,1
+TXN-2010,2024-03-12T14:00:00Z,wire_transfer,18000.0,EUR,ACC-ER-01,Elena Ross,NL,Bluewater Ventures Ltd,Bluewater Ventures Ltd,BS,Shareholder loan,0
+TXN-2011,2024-03-13T10:00:00Z,wire_transfer,14500.0,USD,ACC-MV-01,Marcus Vane,RO,Shell Corp IO Ltd,Shell Corp IO Ltd,BS,Director fee,0
+TXN-2012,2024-03-14T16:30:00Z,wire_transfer,112000.0,USD,ACC-HC-01,Harrington Capital Partners,CH,Bluewater Ventures Ltd,Bluewater Ventures Ltd,BS,Investment return disbursement,0

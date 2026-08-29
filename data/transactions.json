@@ -1,0 +1,278 @@
+[
+  {
+    "txn_id": "TXN-2001",
+    "timestamp": "2024-03-03T08:30:00Z",
+    "type": "wire_transfer",
+    "amount": 48500.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-4471",
+      "name": "James Chen",
+      "bank": "ClearBank Demo",
+      "iban": null,
+      "country": "GB"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Northstar Trading Ltd",
+      "bank": "NatWest",
+      "iban": "GB29NWBK60161331926819",
+      "country": "GB"
+    },
+    "reference": "Consulting services Q1",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2002",
+    "timestamp": "2024-03-05T14:10:00Z",
+    "type": "wire_transfer",
+    "amount": 49200.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-4471",
+      "name": "James Chen",
+      "bank": "ClearBank Demo",
+      "iban": null,
+      "country": "GB"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Northstar Trading Ltd",
+      "bank": "NatWest",
+      "iban": "GB29NWBK60161331926819",
+      "country": "GB"
+    },
+    "reference": "Consulting services Q1 - tranche 2",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2003",
+    "timestamp": "2024-03-07T09:05:00Z",
+    "type": "wire_transfer",
+    "amount": 47800.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-4471",
+      "name": "James Chen",
+      "bank": "ClearBank Demo",
+      "iban": null,
+      "country": "GB"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Northstar Trading Ltd",
+      "bank": "NatWest",
+      "iban": "GB29NWBK60161331926819",
+      "country": "GB"
+    },
+    "reference": "Consulting services Q1 - tranche 3",
+    "flagged": true
+  },
+  {
+    "txn_id": "TXN-2004",
+    "timestamp": "2024-03-07T11:00:00Z",
+    "type": "wire_transfer",
+    "amount": 45000.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-NST-01",
+      "name": "Northstar Trading Ltd",
+      "bank": "NatWest",
+      "iban": "GB29NWBK60161331926819",
+      "country": "GB"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Harrington Capital Partners",
+      "bank": "Sygnum Bank",
+      "iban": "CH5600890012345678901",
+      "country": "CH"
+    },
+    "reference": "Investment placement",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2005",
+    "timestamp": "2024-03-08T10:30:00Z",
+    "type": "wire_transfer",
+    "amount": 50000.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-NST-01",
+      "name": "Northstar Trading Ltd",
+      "bank": "NatWest",
+      "iban": "GB29NWBK60161331926819",
+      "country": "GB"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Harrington Capital Partners",
+      "bank": "Sygnum Bank",
+      "iban": "CH5600890012345678901",
+      "country": "CH"
+    },
+    "reference": "Investment placement - tranche 2",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2006",
+    "timestamp": "2024-03-09T15:45:00Z",
+    "type": "wire_transfer",
+    "amount": 47000.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-NST-01",
+      "name": "Northstar Trading Ltd",
+      "bank": "NatWest",
+      "iban": "GB29NWBK60161331926819",
+      "country": "GB"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Harrington Capital Partners",
+      "bank": "Sygnum Bank",
+      "iban": "CH5600890012345678901",
+      "country": "CH"
+    },
+    "reference": "Investment placement - tranche 3",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2007",
+    "timestamp": "2024-03-10T08:00:00Z",
+    "type": "crypto_purchase",
+    "amount": 30000.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-HC-01",
+      "name": "Harrington Capital Partners",
+      "bank": "Sygnum Bank",
+      "iban": "CH5600890012345678901",
+      "country": "CH"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "OTC Desk - AlphaFX",
+      "bank": null,
+      "iban": null,
+      "country": "AE"
+    },
+    "reference": "BTC acquisition - client mandate",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2008",
+    "timestamp": "2024-03-10T12:30:00Z",
+    "type": "cash_deposit",
+    "amount": 9800.00,
+    "currency": "EUR",
+    "sender": {
+      "account_id": null,
+      "name": "Unknown - cash",
+      "bank": null,
+      "iban": null,
+      "country": "NL"
+    },
+    "receiver": {
+      "account_id": "ACC-ER-01",
+      "name": "Elena Ross",
+      "bank": "ING Netherlands",
+      "iban": "NL91ABNA0417164300",
+      "country": "NL"
+    },
+    "reference": "Cash deposit - branch NL",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2009",
+    "timestamp": "2024-03-11T09:15:00Z",
+    "type": "cash_deposit",
+    "amount": 9500.00,
+    "currency": "EUR",
+    "sender": {
+      "account_id": null,
+      "name": "Unknown - cash",
+      "bank": null,
+      "iban": null,
+      "country": "NL"
+    },
+    "receiver": {
+      "account_id": "ACC-ER-01",
+      "name": "Elena Ross",
+      "bank": "ING Netherlands",
+      "iban": "NL91ABNA0417164300",
+      "country": "NL"
+    },
+    "reference": "Cash deposit - branch NL",
+    "flagged": true
+  },
+  {
+    "txn_id": "TXN-2010",
+    "timestamp": "2024-03-12T14:00:00Z",
+    "type": "wire_transfer",
+    "amount": 18000.00,
+    "currency": "EUR",
+    "sender": {
+      "account_id": "ACC-ER-01",
+      "name": "Elena Ross",
+      "bank": "ING Netherlands",
+      "iban": "NL91ABNA0417164300",
+      "country": "NL"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Bluewater Ventures Ltd",
+      "bank": "Deltec Bank",
+      "iban": null,
+      "country": "BS"
+    },
+    "reference": "Shareholder loan",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2011",
+    "timestamp": "2024-03-13T10:00:00Z",
+    "type": "wire_transfer",
+    "amount": 14500.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-MV-01",
+      "name": "Marcus Vane",
+      "bank": "BCR Romania",
+      "iban": "RO49AAAA1B31007593840000",
+      "country": "RO"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Shell Corp IO Ltd",
+      "bank": "Deltec Bank",
+      "iban": null,
+      "country": "BS"
+    },
+    "reference": "Director fee",
+    "flagged": false
+  },
+  {
+    "txn_id": "TXN-2012",
+    "timestamp": "2024-03-14T16:30:00Z",
+    "type": "wire_transfer",
+    "amount": 112000.00,
+    "currency": "USD",
+    "sender": {
+      "account_id": "ACC-HC-01",
+      "name": "Harrington Capital Partners",
+      "bank": "Sygnum Bank",
+      "iban": "CH5600890012345678901",
+      "country": "CH"
+    },
+    "receiver": {
+      "account_id": null,
+      "name": "Bluewater Ventures Ltd",
+      "bank": "Deltec Bank",
+      "iban": null,
+      "country": "BS"
+    },
+    "reference": "Investment return disbursement",
+    "flagged": false
+  }
+]

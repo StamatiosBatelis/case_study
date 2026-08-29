@@ -1,0 +1,92 @@
+[
+  {
+    "doc_id": "DOC-001",
+    "title": "Northstar Trading Ltd - Corporate Overview",
+    "type": "corporate_report",
+    "date": "2024-01-15",
+    "source": "internal_analyst",
+    "author": "Analyst Unit 3",
+    "content": "Northstar Trading Ltd was incorporated in England and Wales in November 2021 (Companies House no. 13847291). Registered address: 12 Canary Wharf, London E14 5AB. Listed director: David Okafor (nominee director, linked to 14 other shell entities). No filed accounts. Principal activity listed as 'international trade consultancy'. No identifiable trading activity found in open source. The entity appears to function as a pass-through vehicle. Beneficial ownership is not publicly declared. Flagged for further financial investigation."
+  },
+  {
+    "doc_id": "DOC-002",
+    "title": "Elena Ross - Subject Profile",
+    "type": "subject_profile",
+    "date": "2024-02-20",
+    "source": "internal_analyst",
+    "author": "Analyst Unit 1",
+    "content": "Elena Ross, DOB 1981-06-14, Dutch national. Known addresses: Amsterdam NL (primary), occasional presence in Frankfurt DE. Occupation declared as 'independent financial consultant'. LinkedIn profile shows connections to Marcus Vane and several offshore trust administrators. Previously investigated in 2021 in connection with a suspected trade-based money laundering scheme; case closed without prosecution. Phone number on record: +31612345678. Email: elena.ross@privatenet.com. Associates: Marcus Vane (Romania), James Chen (UK/Germany). No criminal convictions."
+  },
+  {
+    "doc_id": "DOC-003",
+    "title": "Shell Corp IO - OSINT Summary",
+    "type": "osint_report",
+    "date": "2024-02-28",
+    "source": "osint_tool",
+    "author": "Automated OSINT Pipeline",
+    "content": "shell-corp.io domain registered 2022-09-03 via Namecheap with privacy protection. Hosting resolves to AS20473 (Choopa LLC) via Romania exit node. No website content indexed. MX records point to ProtonMail. The domain has been observed in prior intelligence reporting as a front for correspondence between Eastern European-linked intermediaries and offshore financial structures. No regulatory filings. Associated email addresses: marcus.vane@shell-corp.io, onboarding@shell-corp.io."
+  },
+  {
+    "doc_id": "DOC-004",
+    "title": "Suspicious Activity Report - ACC-4471",
+    "type": "sar",
+    "date": "2024-03-08",
+    "source": "clearbank_demo_compliance",
+    "author": "Compliance Officer, ClearBank Demo",
+    "content": "SAR filed under POCA 2002. Account ACC-4471 held by James Chen (DOB 1979-11-02, British national, address: 14 Brentwood Ave, London SE1 7HT). Three outbound wire transfers totalling USD 145,500 made between 3-7 March 2024 to Northstar Trading Ltd. Transfers are structurally similar (sub-50k, 72h apart) and inconsistent with account history. Customer provided a consulting agreement when queried; document appears templated and lacks specificity. Account placed under enhanced monitoring. NCA consent requested for TXN-2003. Beneficial ownership of Northstar Trading Ltd unknown."
+  },
+  {
+    "doc_id": "DOC-005",
+    "title": "Rotterdam Port Intelligence Report - March 2024",
+    "type": "field_report",
+    "date": "2024-03-06",
+    "source": "port_authority_liaison",
+    "author": "Field Officer KV-7",
+    "content": "Cargo consignment ref ROT-2024-0312 cleared Rotterdam port on 2024-03-05. Manifest: industrial equipment components, declared value EUR 22,000, origin: Bucharest, RO. Shipping agent: Freight Anon BV (NL-registered, sole director anonymous via trust). Consignee: Bluewater Ventures Ltd (BVI). Customs flagged a discrepancy: declared value inconsistent with weight and volume for stated goods. Referral made to FIOD. Notably, the shipping agent's email domain (freight-anon.com) has been observed in prior intelligence communications."
+  },
+  {
+    "doc_id": "DOC-006",
+    "title": "Harrington Capital Partners - Due Diligence Note",
+    "type": "due_diligence",
+    "date": "2024-03-12",
+    "source": "external_dd_provider",
+    "author": "DD Provider Alpha",
+    "content": "Harrington Capital Partners is a Swiss-registered investment advisor (CHE-123.456.789), incorporated Zurich 2019. AUM declared CHF 80M. Principals: two Swiss nationals (names withheld per Swiss data protection). Regulated under FINMA. However, cross-referencing with adverse media reveals that Harrington was mentioned in a 2022 Le Temps article regarding alleged facilitation of capital flight from sanctioned jurisdictions. No formal action taken. The entity receives funds from Northstar Trading Ltd (UK) and disburses to Bluewater Ventures Ltd (BVI) - a pattern consistent with layering in a multi-jurisdictional money laundering typology."
+  },
+  {
+    "doc_id": "DOC-007",
+    "title": "Marcus Vane - Travel and Communications Summary",
+    "type": "subject_profile",
+    "date": "2024-03-10",
+    "source": "internal_analyst",
+    "author": "Analyst Unit 2",
+    "content": "Marcus Vane, DOB 1975-03-28, Romanian national. Operates from Bucharest, Romania. Director of Shell Corp IO Ltd (BVI) and listed as signatory on ACC-MV-01 at BCR Romania. Known communications with Elena Ross and freight operators. IP address 185.220.101.34 (Romania, Tor exit node) observed repeatedly in email metadata. Travel record: Vane entered the Netherlands on 2024-02-28 and departed 2024-03-02, dates consistent with in-person coordination immediately before the financial transfers began. No prior convictions. Subject is considered a primary coordinator in the current investigation."
+  },
+  {
+    "doc_id": "DOC-008",
+    "title": "Wire Instructions March - Attachment Analysis",
+    "type": "attachment_analysis",
+    "date": "2024-03-04",
+    "source": "internal_analyst",
+    "author": "Analyst Unit 3",
+    "content": "PDF attachment 'wire_instructions_march.pdf' recovered from intercepted email (evt_003). Document contains wire transfer details: beneficiary Northstar Trading Ltd, IBAN GB29NWBK60161331926819, Bank: NatWest, reference 'Consulting services Q1'. Document metadata: created 2024-03-01, author field 'JC', software 'LibreOffice 7.4'. No digital signature. Font embedding and formatting consistent with documents previously attributed to James Chen. The three-tranche payment structure described verbally in communications is reflected exactly in subsequent financial transactions TXN-2001, TXN-2002, TXN-2003."
+  },
+  {
+    "doc_id": "DOC-009",
+    "title": "Bluewater Ventures Ltd - Formation Analysis",
+    "type": "corporate_report",
+    "date": "2024-03-13",
+    "source": "internal_analyst",
+    "author": "Analyst Unit 1",
+    "content": "Bluewater Ventures Ltd incorporated in the BVI on 2024-03-12 (registration no. BVI-2024-09812). Registered agent: Apex Corporate Services Ltd (BVI). Nominee director: unknown. Beneficial owner: Elena Ross via a Liechtenstein trust (Stiftung Bluewater). The formation request email (evt_014) was sent by j.chen@freemail.org to onboarding@shell-corp.io, indicating Shell Corp IO facilitated the incorporation. First inbound wire of USD 112,000 from Harrington Capital Partners received within 48 hours of formation. This entity appears to be the terminus of the current layering cycle and is likely the integration vehicle."
+  },
+  {
+    "doc_id": "DOC-010",
+    "title": "Investigation Summary - Operation TIDELINE",
+    "type": "case_summary",
+    "date": "2024-03-15",
+    "source": "senior_analyst",
+    "author": "Senior Analyst KV-4",
+    "content": "Operation TIDELINE investigates a suspected multi-jurisdictional money laundering network operating across the UK, Netherlands, Romania, Switzerland, and the British Virgin Islands. Key subjects: Marcus Vane (coordinator), Elena Ross (financial intermediary), James Chen (account holder / layering executor). The scheme involves three tranches of USD ~145k moved from ACC-4471 (Chen) through Northstar Trading Ltd (UK) to Harrington Capital Partners (CH), then onward to Bluewater Ventures Ltd (BVI). Cash deposits into Elena Ross's NL account may represent a parallel placement leg. A Rotterdam port cargo discrepancy (ref ROT-2024-0312) suggests possible trade-based money laundering dimension. Recommend: financial freezing order application, NCA referral, Eurojust coordination. Next review: 2024-03-22."
+  }
+]

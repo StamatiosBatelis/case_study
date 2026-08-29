@@ -1,0 +1,167 @@
+[
+  {
+    "event_id": "evt_001",
+    "timestamp": "2024-03-01T08:12:43Z",
+    "channel": "email",
+    "from": "marcus.vane@shell-corp.io",
+    "to": ["elena.ross@privatenet.com"],
+    "subject": "Re: shipment timing",
+    "body": "Elena, the window is narrow. Move the funds before end of week or the arrangement falls apart. Discretion as always.",
+    "attachments": [],
+    "metadata": {"ip": "185.220.101.34", "country": "RO"}
+  },
+  {
+    "event_id": "evt_002",
+    "timestamp": "2024-03-01T09:45:00Z",
+    "channel": "sms",
+    "from": "+447700900112",
+    "to": ["+14155550188"],
+    "subject": null,
+    "body": "Package confirmed. Account 4471 ready.",
+    "attachments": [],
+    "metadata": {"carrier": "MVNO-X", "cell_tower": "LON-NW3"}
+  },
+  {
+    "event_id": "evt_003",
+    "timestamp": "2024-03-01T11:03:17Z",
+    "channel": "email",
+    "from": "elena.ross@privatenet.com",
+    "to": ["marcus.vane@shell-corp.io", "j.chen@freemail.org"],
+    "subject": "Fw: shipment timing",
+    "body": "Marcus - forwarding to our accountant. James, please coordinate the transfers per the usual split. Three tranches, 72h apart.",
+    "attachments": ["wire_instructions_march.pdf"],
+    "metadata": {"ip": "91.108.4.1", "country": "NL"}
+  },
+  {
+    "event_id": "evt_004",
+    "timestamp": "2024-03-01T14:22:05Z",
+    "channel": "chat",
+    "from": "j.chen@freemail.org",
+    "to": ["elena.ross@privatenet.com"],
+    "subject": null,
+    "body": "Understood. Using Northstar Trading and two nominee accounts as before. First tranche goes Monday.",
+    "attachments": [],
+    "metadata": {"platform": "Signal", "device": "Android 13"}
+  },
+  {
+    "event_id": "evt_005",
+    "timestamp": "2024-03-03T07:58:30Z",
+    "channel": "email",
+    "from": "alerts@bank-notify.net",
+    "to": ["j.chen@freemail.org"],
+    "subject": "Transaction confirmation - ref TXN-2001",
+    "body": "Your outgoing wire of USD 48,500 to Northstar Trading Ltd (IBAN: GB29NWBK60161331926819) has been processed. Ref: TXN-2001.",
+    "attachments": [],
+    "metadata": {"ip": "10.0.0.1", "country": "GB"}
+  },
+  {
+    "event_id": "evt_006",
+    "timestamp": "2024-03-04T10:15:00Z",
+    "channel": "email",
+    "from": "marcus.vane@shell-corp.io",
+    "to": ["logistics@freight-anon.com"],
+    "subject": "Delivery update needed",
+    "body": "Need confirmation the cargo clears Rotterdam by Thursday. If delayed, the financial leg cannot proceed.",
+    "attachments": [],
+    "metadata": {"ip": "185.220.101.34", "country": "RO"}
+  },
+  {
+    "event_id": "evt_007",
+    "timestamp": "2024-03-05T16:40:22Z",
+    "channel": "sms",
+    "from": "+447700900112",
+    "to": ["+14155550188"],
+    "subject": null,
+    "body": "Second tranche done. 4471 balance updated.",
+    "attachments": [],
+    "metadata": {"carrier": "MVNO-X", "cell_tower": "LON-NW3"}
+  },
+  {
+    "event_id": "evt_008",
+    "timestamp": "2024-03-06T09:00:00Z",
+    "channel": "chat",
+    "from": "elena.ross@privatenet.com",
+    "to": ["marcus.vane@shell-corp.io"],
+    "subject": null,
+    "body": "All three tranches complete. Total moved: ~145k. Northstar will layer through two more entities before final destination.",
+    "attachments": [],
+    "metadata": {"platform": "Signal", "device": "iOS 17"}
+  },
+  {
+    "event_id": "evt_009",
+    "timestamp": "2024-03-07T13:25:10Z",
+    "channel": "email",
+    "from": "j.chen@freemail.org",
+    "to": ["compliance@clearbank-demo.com"],
+    "subject": "Clarification on account activity",
+    "body": "Hi, I am writing regarding recent queries on my account. These transactions relate to legitimate consulting fees paid to Northstar Trading for advisory services. Please find attached the service agreement.",
+    "attachments": ["northstar_consulting_agreement.pdf"],
+    "metadata": {"ip": "77.111.245.3", "country": "DE"}
+  },
+  {
+    "event_id": "evt_010",
+    "timestamp": "2024-03-08T08:05:00Z",
+    "channel": "email",
+    "from": "compliance@clearbank-demo.com",
+    "to": ["j.chen@freemail.org"],
+    "subject": "Re: Clarification on account activity",
+    "body": "Thank you for your response. We are reviewing the documentation. Your account remains under monitoring pending further review.",
+    "attachments": [],
+    "metadata": {"ip": "10.0.0.2", "country": "GB"}
+  },
+  {
+    "event_id": "evt_011",
+    "timestamp": "2024-03-09T17:10:44Z",
+    "channel": "chat",
+    "from": "marcus.vane@shell-corp.io",
+    "to": ["logistics@freight-anon.com"],
+    "subject": null,
+    "body": "Rotterdam cleared. Next consignment scheduled for end of month. Same arrangement.",
+    "attachments": [],
+    "metadata": {"platform": "Telegram", "device": "Desktop"}
+  },
+  {
+    "event_id": "evt_012",
+    "timestamp": "2024-03-10T11:45:00Z",
+    "channel": "email",
+    "from": "elena.ross@privatenet.com",
+    "to": ["j.chen@freemail.org"],
+    "subject": "Next cycle",
+    "body": "James, Marcus confirms the next cycle starts March 28. Prepare the accounts. Same structure, increase by 20%.",
+    "attachments": [],
+    "metadata": {"ip": "91.108.4.1", "country": "NL"}
+  },
+  {
+    "event_id": "evt_013",
+    "timestamp": "2024-03-11T09:30:00Z",
+    "channel": "sms",
+    "from": "+14155550188",
+    "to": ["+447700900112"],
+    "subject": null,
+    "body": "Understood. Will have accounts ready. New nominee lined up.",
+    "attachments": [],
+    "metadata": {"carrier": "AT&T", "cell_tower": "NYC-MH5"}
+  },
+  {
+    "event_id": "evt_014",
+    "timestamp": "2024-03-12T14:00:00Z",
+    "channel": "email",
+    "from": "j.chen@freemail.org",
+    "to": ["onboarding@shell-corp.io"],
+    "subject": "New entity registration",
+    "body": "Please proceed with registering Bluewater Ventures Ltd in the BVI. Director: nominee. Shareholder: Elena Ross (via trust).",
+    "attachments": ["bluewater_formation_docs.pdf"],
+    "metadata": {"ip": "77.111.245.3", "country": "DE"}
+  },
+  {
+    "event_id": "evt_015",
+    "timestamp": "2024-03-13T10:20:00Z",
+    "channel": "chat",
+    "from": "elena.ross@privatenet.com",
+    "to": ["marcus.vane@shell-corp.io"],
+    "subject": null,
+    "body": "Bluewater being set up. We'll route cycle 2 through that. Should add another layer.",
+    "attachments": [],
+    "metadata": {"platform": "Signal", "device": "iOS 17"}
+  }
+]
