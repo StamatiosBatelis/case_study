@@ -56,7 +56,11 @@ Financial flows        Comms body text
 
 The key mechanism is **entity anchoring**. Graph traversal returns entity names. Those names filter the vector search — instead of searching all of ChromaDB, we search only chunks associated with the entities the graph found. This dramatically reduces noise and keeps the LLM context focused on relevant evidence rather than loosely related passages.
 
-The reverse works too: vector chunks carry entity metadata from ETL, so when ChromaDB returns a document excerpt, the agent knows which graph nodes to expand next.
+The reverse works too: vector chunks carry entity metadata from ETL — specifically the canonical entity names as extracted and stored in SQLite. When ChromaDB returns a document excerpt, the agent knows which graph nodes to expand next. Canonical names are the stable identifier in this design: KuzuDB uses `name` as the primary key, SQLite uses the same strings, and ChromaDB metadata mirrors them. If entities are renamed or merged, a re-sync and re-index is required — but that's the correct response since both stores would be stale regardless of whether metadata stored names or UUIDs.
+
+**Context bounding in hybrid mode:** Multi-entity queries are capped at 3 entity anchors per retrieval step (the three highest-confidence spotted entities) and at 10 total chunks returned. This prevents ChromaDB `where` filters from expanding unboundedly when a query mentions many entities, and keeps the LLM context window manageable. The cap is configurable via `n_semantic_results` on `HybridRetriever`.
+
+**Concurrency constraint:** KuzuDB is embedded and uses file-level locking — only one process can hold a write lock at a time. `kuzu_store.sync()` is a strictly offline, single-process batch operation. The agent query service opens KuzuDB only after the pipeline has completed and exited. Running both simultaneously on the same machine will raise a lock error. In production this is enforced by running ingestion as a scheduled job (cron, Airflow) with the query service blocked or restarted after each sync.
 
 Three modes are exposed to the agent:
 
